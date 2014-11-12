@@ -41,6 +41,10 @@ init-connect                   = 'SET NAMES utf8'
 character-set-server           = utf8
 <% end %>
 
+<% node['mysql']['tuning'].each do |key, value| %>
+<%= key -%> = <%= value -%>
+<% end if node['mysql']['tuning'] %>
+
 [mysql]
 <% if @include_dir %>
 !includedir <%= @include_dir %>
